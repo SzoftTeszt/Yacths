@@ -1,0 +1,19 @@
+<p>{{yacths|json}}</p>
+<div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
+
+  <div *ngFor="let yacth of yacths" class="col">
+    <div class="card h-100">
+      <img [src]="yacth.image" class="card-img-top" [alt]="yacth.name">
+      <div class="card-body">
+        <h5 class="card-title">{{yacth.name}}</h5>
+        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      </div>
+      <div class="card-footer">
+        <small class="text-muted">
+            <button type="button" class="btn btn-info" (click)="foglalas(yacth)">Foglalás</button>
+        </small>
+      </div>
+    </div>
+  </div>
+ 
+</div>
