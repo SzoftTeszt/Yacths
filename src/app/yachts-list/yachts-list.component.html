@@ -1,13 +1,45 @@
-<p>{{yacths|json}}</p>
+
+<ngb-datepicker class="mt-5" #dp (dateSelect)="onDateSelection($event)" [displayMonths]="1" [dayTemplate]="t" outsideDays="hidden" />
+
+<ng-template #t let-date let-focused="focused">
+	<span
+		class="custom-day"
+		[class.focused]="focused"
+		[class.range]="isRange(date)"
+		[class.faded]="isHovered(date) || isInside(date)"
+		(mouseenter)="hoveredDate = date"
+		(mouseleave)="hoveredDate = null"
+	>
+		{{ date.day }}
+	</span>
+</ng-template>
+
+<!-- <hr /> -->
+
+<!-- <pre>From: {{ fromDate | json }} </pre>
+<pre>To: {{ toDate | json }} </pre> -->
+
+<div>
+  <select [(ngModel)]="searchField" class="form-select">
+  <option *ngFor="let item of lehetosegeg" 
+  [value]="item.key">{{item.text}}</option>
+
+</select>
+</div>
+
 <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
 
-  <div *ngFor="let yacth of yacths" class="col">
+  <div *ngFor="let yacth of yacths|sort:searchField:'asc'" class="col">
     <div class="card h-100">
       <img [src]="yacth.image" class="card-img-top" [alt]="yacth.name">
       <div class="card-body">
         <h5 class="card-title">{{yacth.name}}</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      </div>
+        <p class="card-text">
+          
+          This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          <p>{{yacth.builder}}</p>
+          <p>{{yacth.daily_price}} €</p>
+        </div>
       <div class="card-footer">
         <small class="text-muted">
             <button type="button" class="btn btn-info" (click)="foglalas(yacth)">Foglalás</button>
