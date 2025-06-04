@@ -24,6 +24,9 @@ export class YachtsListComponent {
     {text:"Foglalo", key:"deposit"},
   ]
 
+  error=false
+  errorMessage=""
+
 
   constructor(private base:BaseService){
     this.base.getYacts().subscribe(
@@ -73,11 +76,12 @@ export class YachtsListComponent {
 
   foglalas(yacth:any){
     const body = Object.assign({},yacth)
+
     console.log(body)
     delete body.image
     
     const body2 = {
-      yacthId:yacth.id, 
+      yacthId:String(yacth.id), 
       deposit:yacth.deposit, 
       daily_price:yacth.daily_price, 
       uid:"Attila",
@@ -85,7 +89,15 @@ export class YachtsListComponent {
       endDate: this.toDate?this.ngbDateToString(this.toDate):null,
       yacthName: yacth.name
     }
-    this.base.postYact(body2)
+    this.base.postYact(body2).subscribe(
+      {
+        "next":()=>{ this.error=false},
+        "error":(err:any)=>{ 
+          this.error=true
+          this.errorMessage=err.error
+        }
+      }
+    )
   }
 
 }

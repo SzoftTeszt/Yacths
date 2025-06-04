@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class BaseService {
+  cAPI="https://localhost:7169/api/Rents/"
   api="https://heroauth-97aa7-default-rtdb.europe-west1.firebasedatabase.app/hajok.json"
   constructor(private http:HttpClient) { }
 
@@ -13,8 +14,7 @@ export class BaseService {
   }
 
   postYact(body:any){
-    this.http.post(this.api, body).subscribe(
-      (res)=>console.log("Sikeres mentés -", res)
-    )
+    console.log("Body", body);
+    return this.http.post(this.cAPI, body)
   }
 }
