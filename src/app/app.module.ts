@@ -11,6 +11,7 @@ import { SortPipe } from './sort.pipe';
 import { provideHttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RentlistComponent } from './rentlist/rentlist.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     YachtsListComponent,
     HomeComponent,
     SearchPipe,
-    SortPipe
+    SortPipe,
+    RentlistComponent
   ],
   imports: [
     BrowserModule,

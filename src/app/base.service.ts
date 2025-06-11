@@ -17,4 +17,7 @@ export class BaseService {
     console.log("Body", body);
     return this.http.post(this.cAPI, body)
   }
+  getRents(){
+    return this.http.get(this.cAPI)
+  }
 }

@@ -27,9 +27,13 @@
 </select>
 </div>
 
-<div *ngIf="error">
-  <h3>Hiba a mátrixban!</h3>
-  <p>{{errorMessage|json}}</p>
+<div class="alert alert-danger my-3" role="alert" *ngIf="error==-1">
+  <h3>Sikertelen megrendelés!</h3>
+  <p>{{errorMessage}}</p>
+</div>
+<div class="alert alert-success" role="alert" *ngIf="error==1">
+  <h3>Sikeres megrendelés!</h3>
+  <p>Várjuk a kikötőben!</p>
 </div>
 
 <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">

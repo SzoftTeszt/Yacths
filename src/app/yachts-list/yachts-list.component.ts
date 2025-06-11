@@ -24,7 +24,7 @@ export class YachtsListComponent {
     {text:"Foglalo", key:"deposit"},
   ]
 
-  error=false
+  error=0
   errorMessage=""
 
 
@@ -86,14 +86,14 @@ export class YachtsListComponent {
       daily_price:yacth.daily_price, 
       uid:"Attila",
       startDate: this.ngbDateToString(this.fromDate),
-      endDate: this.toDate?this.ngbDateToString(this.toDate):null,
+      endDate: this.toDate?this.ngbDateToString(this.toDate):this.ngbDateToString(this.fromDate),
       yacthName: yacth.name
     }
     this.base.postYact(body2).subscribe(
       {
-        "next":()=>{ this.error=false},
+        "next":()=>{ this.error=1},
         "error":(err:any)=>{ 
-          this.error=true
+          this.error=-1
           this.errorMessage=err.error
         }
       }
